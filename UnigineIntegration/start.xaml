@@ -1,0 +1,21 @@
+﻿<Page x:Class="NoesisGUI.UnigineIntegration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Terma_Lux_GUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="NoesisGUI Unigine Integration">
+
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="450" Margin="5,0,0,0" VerticalAlignment="Center" Width="600">
+            <Border.Background>
+                <SolidColorBrush Color="Blue" Opacity="0.1"/>
+            </Border.Background>
+            
+        </Border>
+        <Label Content="NoesisGUI Unigine Integration" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Foreground="White" FontFamily="Arial" FontSize="48"/>
+
+    </Grid>
+</Page>
