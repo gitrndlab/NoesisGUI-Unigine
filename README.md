@@ -5,6 +5,8 @@ The library is under development and cover just base integration NoesisGUI into 
 
 NoesisIntegration is a library project which you integrate with your C++ Unigine project. A sample of integration you will find in UnigineIntegration folder (you can integrate it in main.cpp or in AppSystemLogic file to work with Editor2). There is also sample of integration with Unigine Script within us_world.cpp file. 
 
+Provided integration works well only within main.cpp. To work in AppSystemLogic you have to move pContext->OMSetRenderTargets line from render() at the top of the render() function. Then it will works in Editor2 as well but it will be broken transparency, etc. Also then NoesisGUI will be below Unigine GUI layer.
+
 There is implemented a keyboard binding for it:
 F1 - will reload xaml file,
 F2 - will grab mopuse to GUI elements,
