@@ -15,7 +15,10 @@ You should be aware that not everything may be working yet and some of things ar
 
 To work you need to download and add NoesisGUI depedencies from https://www.noesisengine.com.
 
-# License
+# Noesis License
+  D3D11RenderDevice.h, D3D11RenderDevice.cpp, Render.D3D11RenderDevice.cpp and Shaders.h files are licensed under Noesis Technologies S.L.   license where All Rights are Reserved. You can check NoesisGUI license at https://www.noesisengine.com.
+
+# License for NoesisGUI-Unigine Integration library
   Copyright (c) 2014-2018 R&D Lab. All right reserved.
   office@researchdevelopinglab.com
   
