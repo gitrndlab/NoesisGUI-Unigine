@@ -63,13 +63,14 @@ void NoesisGUI::Render()
 	ppOldDsv = nullptr;
 	//pContext->OMGetRenderTargets(1, &ppOldRtv, &ppOldDsv);
 
-	ID3D11RenderTargetView* pTexNoesisRTV = static_cast<ID3D11RenderTargetView*>(my_texture->getD3D11RenderTargetView());
-	pContext->OMSetRenderTargets(1, &pTexNoesisRTV, nullptr);
-
 	view->GetRenderer()->UpdateRenderTree();
 	view->GetRenderer()->RenderOffscreen();
 
 	view->GetRenderer()->Render();
+
+	ID3D11RenderTargetView* pTexNoesisRTV = static_cast<ID3D11RenderTargetView*>(my_texture->getD3D11RenderTargetView());
+	pContext->OMSetRenderTargets(1, &pTexNoesisRTV, nullptr);
+	
 	//pContext->OMSetRenderTargets(1, &ppOldRtv, ppOldDsv);
 }
 
