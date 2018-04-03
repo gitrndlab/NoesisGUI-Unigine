@@ -39,17 +39,29 @@ public:
 	NoesisGUI();
 	~NoesisGUI();
 
+	Noesis::Ptr<FrameworkElement> xaml;
+
 	void Render();
 	void Update();
 	void Initialize();
 
 	static NoesisGUI &getInstance();
-
 	NoesisGUI &getInstanceInner();
+
+	void LoadUI(std::string name);
+	void LoadUIbyUS(const Variable &name);
+
+	void ReloadGUI();
+	void GrabMouse(bool grab);
 
 	void Shutdown();
 
-	Noesis::Ptr<FrameworkElement> xaml;
+private:
+	void Clear();
+
+	int width_texture;
+	int height_texture;
+
 	Noesis::Ptr<IView> view;
 	Noesis::Ptr<RenderDevice> device;
 
@@ -68,18 +80,10 @@ public:
 
 	std::string ui_file_name;
 
-	void LoadUI(std::string name);
-	void LoadUIbyUS(const Variable &name);
-
-	void Clear();
-
 	ID3D11RenderTargetView* ppOldRtv = nullptr;
 	ID3D11DepthStencilView* ppOldDsv = nullptr;
 
 	bool pressed = false;
-
-	int width_texture;
-	int height_texture;
 
 	int width_app;
 	int height_app;

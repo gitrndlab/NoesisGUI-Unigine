@@ -29,6 +29,19 @@ using namespace Unigine;
 using namespace Noesis;
 using namespace NoesisApp;
 
+NoesisGUI::NoesisGUI()
+{
+	width_texture = 1920;
+	height_texture = 1080;
+
+	width_app = 1600;
+	height_app = 900;
+}
+
+NoesisGUI::~NoesisGUI()
+{
+}
+
 void NoesisLogHandler(const char* filename, uint32_t line, uint32_t level, const char* channel, const char* message)
 {
 	if (strcmp(channel, "") == 0)
@@ -41,26 +54,13 @@ void NoesisLogHandler(const char* filename, uint32_t line, uint32_t level, const
 	}
 }
 
-NoesisGUI::NoesisGUI()
-{
-	width_texture = 1920;
-	height_texture = 1080;
-
-	width_app = App::get()->getWidth();
-	height_app = App::get()->getHeight();
-}
-
-NoesisGUI::~NoesisGUI()
-{
-}
-
 void NoesisGUI::Render()
 {
 	if (!view)
 		return;
 
-	ppOldRtv = nullptr;
-	ppOldDsv = nullptr;
+	//ppOldRtv = nullptr;
+	//ppOldDsv = nullptr;
 	//pContext->OMGetRenderTargets(1, &ppOldRtv, &ppOldDsv);
 
 	view->GetRenderer()->UpdateRenderTree();
@@ -70,7 +70,7 @@ void NoesisGUI::Render()
 
 	ID3D11RenderTargetView* pTexNoesisRTV = static_cast<ID3D11RenderTargetView*>(my_texture->getD3D11RenderTargetView());
 	pContext->OMSetRenderTargets(1, &pTexNoesisRTV, nullptr);
-	
+
 	//pContext->OMSetRenderTargets(1, &ppOldRtv, ppOldDsv);
 }
 
@@ -112,33 +112,10 @@ void NoesisGUI::Update()
 		}
 	}
 
-	if (App::get()->clearKeyState('j'))
-	{
-		view->Char('j');
-	}
-
-	// Press F1 to reload xaml file
-	if (App::get()->clearKeyState(App::KEY_F1))
-	{
-		Clear();
-		xaml = Noesis::GUI::LoadXaml<FrameworkElement>(ui_file_name.c_str());
-		view->GetRenderer()->Shutdown();
-		view = Noesis::GUI::CreateView(xaml);
-		view->SetSize(width_texture, height_texture);
-		view->GetRenderer()->Init(device);
-	}
-
-	// Press F2 to grab mouse at GUI elements
-	if (App::get()->clearKeyState(App::KEY_F2))
-	{
-		gui->setMouseGrab(1);
-	}
-
-	// Press F3 to release mouse from GUI
-	if (App::get()->clearKeyState(App::KEY_F3))
-	{
-		gui->setMouseGrab(0);
-	}
+	//if (App::get()->clearKeyState('j'))
+	//{
+	//	view->Char('j');
+	//}
 
 }
 
@@ -229,7 +206,21 @@ void NoesisGUI::LoadUIbyUS(const Variable &name)
 	gui->setMouseGrab(1);
 }
 
-// Load xaml file
+void NoesisGUI::ReloadGUI()
+{
+	Clear();
+	xaml = Noesis::GUI::LoadXaml<FrameworkElement>(ui_file_name.c_str());
+	view->GetRenderer()->Shutdown();
+	view = Noesis::GUI::CreateView(xaml);
+	view->SetSize(width_texture, height_texture);
+	view->GetRenderer()->Init(device);
+}
+
+void NoesisGUI::GrabMouse(bool grab)
+{
+	gui->setMouseGrab(grab);
+}
+
 void NoesisGUI::LoadUI(std::string name)
 {
 	ui_file_name = name;
